@@ -22,17 +22,6 @@ export default function Home(){
 
   return (
     <div>
-      <div className="header">
-        <div className="search">
-          <input
-            placeholder="Buscar projeto…"
-            value={q}
-            onChange={e => setQ(e.target.value)}
-          />
-        </div>
-        <span className="badge">{filtered?.length || 0} itens</span>
-      </div>
-
       {!posts ? <Spinner /> :
         <div className="grid">
           {filtered.map(p => <ProjectCard key={p.id} post={p} />)}

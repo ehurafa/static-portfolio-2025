@@ -71,13 +71,6 @@ img{display:block;max-width:100%;height:auto}
 .card .title{font-weight:700;margin:0 0 8px 0}
 .card .meta{color:#555;font-size:12px}
 
-.header{
-  display:flex;align-items:center;justify-content:space-between;margin: 0 0 16px 0;
-}
-.search{width:100%;max-width:520px}
-.search input{
-  width:100%;padding:12px 14px;border-radius:12px;border:1px solid #ddd;font-size:15px;
-}
 .spinner{padding:32px;text-align:center}
 .badge{display:inline-block;padding:4px 8px;background:#111;color:#fff;border-radius:999px;font-size:12px}
 .footer{color:#777;font-size:12px;margin-top:24px}
