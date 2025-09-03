@@ -11,7 +11,6 @@ export default function ProjectCard({ post }: { post: WPPost }){
       </div>
       <div className="body">
         <h3 className="title" dangerouslySetInnerHTML={{__html: title}} />
-        <div className="meta">{new Date(post.date).toLocaleDateString("pt-BR")}</div>
       </div>
     </a>
   );
