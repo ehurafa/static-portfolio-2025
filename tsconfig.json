@@ -13,6 +13,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "strict": true,
+    "esModuleInterop": true,
     "baseUrl": "."
   },
   "include": ["src"]

@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom";
+import profileImg from "../assets/profile.jpg";
 
 export default function Sidebar(){
   return (
     <div>
-      <div className="avatar"><img src="https://placehold.co/300x300" alt="Avatar" /></div>
+      <div className="avatar"><img src={ profileImg } alt="Profile photo" /></div>
       <h1>Rafael<strong>Gomes</strong></h1>
       <span className="role">Front-end Developer</span>
       <div className="social">
