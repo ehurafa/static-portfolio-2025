@@ -33,7 +33,8 @@ export async function fetchPosts(params: Record<string,string|number> = {}, useA
 
 // Try to resolve an image URL from multiple possible shapes
 export function getPostImage(p: WPPost): string | null {
-  const acfThumb = (p as any)?.acf?.thumb || (p as any)?.acf?.image || null;
+  const acfThumb = (p as any)?.acf?.image_post?.url || null;
+  console.log('WPPost', p)
   if (typeof acfThumb === "string") return acfThumb;
   if (p.better_featured_image?.source_url) return p.better_featured_image.source_url;
   const emb = p?._embedded?.['wp:featuredmedia']?.[0]?.source_url;
