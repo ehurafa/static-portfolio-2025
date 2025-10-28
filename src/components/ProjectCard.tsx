@@ -2,8 +2,8 @@ import { getPostImage, WPPost } from "../api/wp";
 
 export default function ProjectCard({ post }: { post: WPPost }){
   const img = getPostImage(post);
-  const title = post.title?.rendered || "Sem título";
-  const link = post.link || "#";
+  const title = post.acf.title_post || "Sem título";
+  const link = post.acf.link || "#";
   return (
     <a className="card" href={link} target="_blank" rel="noreferrer">
       <div className="thumb">

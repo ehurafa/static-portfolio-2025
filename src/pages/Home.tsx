@@ -1,24 +1,24 @@
-import { useEffect, useMemo, useState } from "react";
-import { fetchPosts, WPPost } from "../api/wp";
-import ProjectCard from "../components/ProjectCard";
-import Spinner from "../components/Spinner";
+import { useEffect, useMemo, useState } from "react"
+import { fetchPosts, WPPost } from "../api/wp"
+import ProjectCard from "../components/ProjectCard"
+import Spinner from "../components/Spinner"
 
 export default function Home(){
-  const [posts, setPosts] = useState<WPPost[] | null>(null);
-  const [q, setQ] = useState("");
+  const [posts, setPosts] = useState<WPPost[] | null>(null)
 
   useEffect(() => {
     fetchPosts({}, true)
       .then(setPosts)
-      .catch(() => setPosts([]));
-  }, []);
+      .catch(() => setPosts([]))
+  }, [])
 
   const filtered = useMemo(() => {
-    if(!posts) return [];
-    if(!q) return posts;
-    const qq = q.toLowerCase();
-    return posts.filter(p => (p.title?.rendered || "").toLowerCase().includes(qq));
-  }, [posts, q]);
+    if(!posts) return []
+    return posts.filter((post) => {
+      console.log('acfx', post.acf.title_post)
+      return (post.acf.title_post || "").toLowerCase()
+    })
+  }, [posts]);
 
   return (
     <div>
@@ -28,5 +28,5 @@ export default function Home(){
         </div>
       }
     </div>
-  );
+  )
 }

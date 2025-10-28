@@ -1,14 +1,15 @@
+export interface ImagePost {
+  url: string;
+}
 
+export interface ACF {
+  data_post: string;
+  image_post: ImagePost;
+  title_post: string;
+}
 export interface WPPost {
   id: number;
-  date: string;
-  link?: string;
-  title: { rendered: string };
-  excerpt?: { rendered: string };
-  better_featured_image?: { source_url: string };
-  featured_media?: number;
-  acf?: Record<string, any>;
-  _embedded?: any;
+  acf: ACF;
 }
 
 const BASE = import.meta.env.VITE_WP_BASE || "https://rafaelgomes.net/postsapi";
@@ -28,6 +29,7 @@ export async function fetchPosts(params: Record<string,string|number> = {}, useA
   const res = await fetch(url, { headers: { "Accept": "application/json" } });
   if(!res.ok) throw new Error("WP error " + res.status);
   const data = await res.json();
+  console.log('xxx ', data)
   return data as WPPost[];
 }
 
