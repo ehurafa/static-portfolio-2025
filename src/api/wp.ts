@@ -10,6 +10,7 @@ export interface ACF {
 export interface WPPost {
   id: number;
   acf: ACF;
+  slug: string;
 }
 
 const BASE = import.meta.env.VITE_WP_BASE || "https://rafaelgomes.net/postsapi";
@@ -42,4 +43,13 @@ export function getPostImage(p: WPPost): string | null {
   const emb = p?._embedded?.['wp:featuredmedia']?.[0]?.source_url;
   if (emb) return emb;
   return null;
+}
+
+export async function fetchPostBySlug(slug: string) {
+  const res = await fetch(
+    `https://www.rafaelgomes.net/wp-json/wp/v2/posts?slug=${slug}&_embed&acf_format=standard`
+  )
+  const data = await res.json()
+  console.log('data', data)
+  return data[0]
 }
