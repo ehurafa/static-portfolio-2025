@@ -13,25 +13,15 @@ export interface WPPost {
   slug: string;
 }
 
+const API_BASE = 'https://www.rafaelgomes.net/postsapi/wp-json/wp/v2'
 const BASE = import.meta.env.VITE_WP_BASE || "https://rafaelgomes.net/postsapi";
 const POSTS_PATH = import.meta.env.VITE_WP_POSTS_PATH || "/wp-json/wp/v2/posts";
 const ACF_POSTS_PATH = import.meta.env.VITE_WP_ACF_POSTS_PATH || "/wp-json/acf/v3/posts";
 
-function join(u: string, p: string){ return u.replace(/\/$/,'') + p; }
-
-export async function fetchPosts(params: Record<string,string|number> = {}, useAcf = false): Promise<WPPost[]> {
-  const search = new URLSearchParams({
-    per_page: "100",
-    _embed: "1",
-    ...params
-  });
-  const path = useAcf ? ACF_POSTS_PATH : POSTS_PATH;
-  const url = join(BASE, path) + "?" + search.toString();
-  const res = await fetch(url, { headers: { "Accept": "application/json" } });
-  if(!res.ok) throw new Error("WP error " + res.status);
-  const data = await res.json();
-  console.log('xxx ', data)
-  return data as WPPost[];
+export async function fetchPosts() {
+  const res = await fetch(`${API_BASE}/posts?_embed&acf_format=standard`)
+  if (!res.ok) throw new Error(`Erro HTTP: ${res.status}`)
+  return res.json()
 }
 
 // Try to resolve an image URL from multiple possible shapes
@@ -46,10 +36,17 @@ export function getPostImage(p: WPPost): string | null {
 }
 
 export async function fetchPostBySlug(slug: string) {
-  const res = await fetch(
-    `https://www.rafaelgomes.net/wp-json/wp/v2/posts?slug=${slug}&_embed&acf_format=standard`
-  )
+  const res = await fetch(`${API_BASE}/posts?slug=${slug}&_embed&acf_format=standard`)
+  if (!res.ok) throw new Error(`Erro HTTP: ${res.status}`)
   const data = await res.json()
-  console.log('data', data)
+  console.log('data by slug:', data)
   return data[0]
+}
+
+export async function fetchPostById(id: string | number) {
+  const res = await fetch(`${API_BASE}/posts/${id}?_embed&acf_format=standard`)
+  if (!res.ok) throw new Error(`Erro HTTP: ${res.status}`)
+  const data = await res.json()
+  console.log('data by id:', data)
+  return data
 }

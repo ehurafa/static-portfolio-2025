@@ -1,45 +1,52 @@
-import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
-import { fetchPostBySlug } from "../api/wp"
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { fetchPostBySlug } from '../api/wp'
 
 export default function ProjectDetails() {
   const { slug } = useParams()
   const [post, setPost] = useState<any>(null)
+   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (!slug) return
-    fetchPostBySlug(slug).then(setPost)
+
+   async function loadPost() {
+      if (!slug) return
+      try {
+        const data = await fetchPostBySlug(slug)
+        setPost(data)
+      } catch (err) {
+        console.error('Erro ao buscar post:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadPost()
   }, [slug])
 
-  if (!post) {
-    return <div className="container">Carregando...</div>
-  }
+  if (loading) return <p>Carregando...</p>
+  if (!post) return <p>Post não encontrado.</p>
 
-  const cover =
-    post.acf?.image_square_400?.sizes?.large ||
-    post.acf?.image_square?.url ||
-    ""
 
   return (
-    <main className="container project-details">
-      {cover && <img className="cover" src={cover} alt={post.acf?.title_post} />}
-
-      <h1 className="title">{post.acf?.title_post}</h1>
-
-      <section
-        className="content"
-        dangerouslySetInnerHTML={{ __html: post.acf?.post_content }}
+    <div className="project-details">
+      <img
+        src={
+          post.acf?.image_post?.sizes?.large ||
+          post.acf?.image_post?.url ||
+          '/fallback.jpg'
+        }
+        alt={post.acf?.title_post}
       />
-
-      {post.acf?.list_of_technologies?.length > 0 && (
-        <div className="tags">
-          {post.acf.list_of_technologies.map((tag: any) => (
-            <a key={tag.term_id} href={`/tag/${tag.slug}`} className="tag">
-              #{tag.name}
-            </a>
-          ))}
-        </div>
-      )}
-    </main>
+      <h1>{post.acf?.title_post}</h1>
+      <div dangerouslySetInnerHTML={{ __html: post.acf?.post_content }} />
+      <ul>
+        {post.acf?.list_of_technologies?.map((tag: any, i: number) => (
+            <li key={tag.term_id}>
+            #{tag.name || ''}
+            </li>
+        ))}
+</ul>
+    </div>
   )
 }
