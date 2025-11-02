@@ -18,7 +18,6 @@ export default function App(){
           <Route path="/contato" element={<Contact />} />
           <Route path="/project/:slug" element={<ProjectDetails />} />
         </Routes>
-        <div className="footer">© {new Date().getFullYear()} Seu Nome — Portfólio</div>
       </main>
     </div>
   );

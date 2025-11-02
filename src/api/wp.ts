@@ -19,7 +19,7 @@ const POSTS_PATH = import.meta.env.VITE_WP_POSTS_PATH || "/wp-json/wp/v2/posts";
 const ACF_POSTS_PATH = import.meta.env.VITE_WP_ACF_POSTS_PATH || "/wp-json/acf/v3/posts";
 
 export async function fetchPosts() {
-  const res = await fetch(`${API_BASE}/posts?_embed&acf_format=standard`)
+  const res = await fetch(`${API_BASE}/posts?per_page=100&_embed&acf_format=standard`)
   if (!res.ok) throw new Error(`Erro HTTP: ${res.status}`)
   return res.json()
 }
@@ -36,7 +36,7 @@ export function getPostImage(p: WPPost): string | null {
 }
 
 export async function fetchPostBySlug(slug: string) {
-  const res = await fetch(`${API_BASE}/posts?slug=${slug}&_embed&acf_format=standard`)
+  const res = await fetch(`${API_BASE}/posts?slug=${slug}&?per_page=100&_embed&acf_format=standard`)
   if (!res.ok) throw new Error(`Erro HTTP: ${res.status}`)
   const data = await res.json()
   console.log('data by slug:', data)
