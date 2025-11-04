@@ -1,9 +1,12 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { fetchPostBySlug } from '../api/wp'
+import { useNavigate } from 'react-router-dom'
+import { TiChevronLeft } from "react-icons/ti";
 
 export default function ProjectDetails() {
   const { slug } = useParams()
+  const navigate = useNavigate()
   const [post, setPost] = useState<any>(null)
    const [loading, setLoading] = useState(true)
 
@@ -46,7 +49,8 @@ export default function ProjectDetails() {
             #{tag.name || ''}
             </li>
         ))}
-</ul>
-    </div>
+    </ul>
+    <button  onClick={() => navigate('/')}><TiChevronLeft /> Voltar</button>
+</div>
   )
 }
