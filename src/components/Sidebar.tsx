@@ -12,13 +12,19 @@ export default function Sidebar(){
       <span className="role">Front-end Developer</span>
       <div className="social">
         <a href="https://www.linkedin.com/in/rflrafa/" aria-label="LinkedIn" target="_blank" rel="noreferrer">
-          <TiSocialLinkedin />
+          <span>
+            <TiSocialLinkedin />
+          </span>
         </a>
         <a href="https://br.pinterest.com/ehurafa/jobs" aria-label="Pinterest" target="_blank" rel="noreferrer">
-          <BiLogoPinterestAlt />
+          <span>
+            <BiLogoPinterestAlt />
+          </span>
         </a>
         <a href="https://github.com/ehurafa" aria-label="LinkedIn" target="_blank" rel="noreferrer">
-          <FaGithubAlt />
+          <span>
+            <FaGithubAlt />
+          </span>
         </a>
       </div>
       <nav className="nav">
