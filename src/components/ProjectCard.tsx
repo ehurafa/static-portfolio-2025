@@ -2,8 +2,8 @@ import { getPostImage, WPPost } from "../api/wp"
 import { Link } from "react-router-dom"
 
 export default function ProjectCard({ post }: { post: WPPost }){
-  const img = getPostImage(post);
-  const title = post.acf.title_post || "Sem título";
+  const img = getPostImage(post)
+  const title = post.acf.title_post || "Sem título"
 
   return (
     <Link to={`/project/${post.slug}`} className="card">
@@ -14,5 +14,5 @@ export default function ProjectCard({ post }: { post: WPPost }){
         <h3 className="title" dangerouslySetInnerHTML={{__html: title}} />
       </div>
     </Link>
-  );
+  )
 }

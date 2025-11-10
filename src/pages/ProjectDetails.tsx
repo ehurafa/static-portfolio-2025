@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { fetchPostBySlug } from '../api/wp'
 import { useNavigate } from 'react-router-dom'
-import { TiChevronLeft } from "react-icons/ti";
+import { TiChevronLeft } from "react-icons/ti"
 
 export default function ProjectDetails() {
   const { slug } = useParams()

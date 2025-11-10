@@ -33,5 +33,5 @@ export default function Sidebar(){
         <NavLink to="/contato">Contato</NavLink>
       </nav>
     </div>
-  );
+  )
 }

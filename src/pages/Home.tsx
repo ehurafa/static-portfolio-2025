@@ -18,7 +18,7 @@ export default function Home(){
       console.log('acfx', post.acf.title_post)
       return (post.acf.title_post || "").toLowerCase()
     })
-  }, [posts]);
+  }, [posts])
 
   return (
     <div>

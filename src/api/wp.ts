@@ -1,22 +1,22 @@
 export interface ImagePost {
-  url: string;
+  url: string
 }
 
 export interface ACF {
-  data_post: string;
-  image_post: ImagePost;
-  title_post: string;
+  data_post: string
+  image_post: ImagePost
+  title_post: string
 }
 export interface WPPost {
-  id: number;
-  acf: ACF;
-  slug: string;
+  id: number
+  acf: ACF
+  slug: string
 }
 
 const API_BASE = 'https://www.rafaelgomes.net/postsapi/wp-json/wp/v2'
-const BASE = import.meta.env.VITE_WP_BASE || "https://rafaelgomes.net/postsapi";
-const POSTS_PATH = import.meta.env.VITE_WP_POSTS_PATH || "/wp-json/wp/v2/posts";
-const ACF_POSTS_PATH = import.meta.env.VITE_WP_ACF_POSTS_PATH || "/wp-json/acf/v3/posts";
+const BASE = import.meta.env.VITE_WP_BASE || "https://rafaelgomes.net/postsapi"
+const POSTS_PATH = import.meta.env.VITE_WP_POSTS_PATH || "/wp-json/wp/v2/posts"
+const ACF_POSTS_PATH = import.meta.env.VITE_WP_ACF_POSTS_PATH || "/wp-json/acf/v3/posts"
 
 export async function fetchPosts() {
   const res = await fetch(`${API_BASE}/posts?per_page=100&_embed&acf_format=standard`)
@@ -26,13 +26,13 @@ export async function fetchPosts() {
 
 // Try to resolve an image URL from multiple possible shapes
 export function getPostImage(p: WPPost): string | null {
-  const acfThumb = (p as any)?.acf?.image_post?.url || null;
+  const acfThumb = (p as any)?.acf?.image_post?.url || null
   console.log('WPPost', p)
-  if (typeof acfThumb === "string") return acfThumb;
-  if (p.better_featured_image?.source_url) return p.better_featured_image.source_url;
-  const emb = p?._embedded?.['wp:featuredmedia']?.[0]?.source_url;
-  if (emb) return emb;
-  return null;
+  if (typeof acfThumb === "string") return acfThumb
+  if (p.better_featured_image?.source_url) return p.better_featured_image.source_url
+  const emb = p?._embedded?.['wp:featuredmedia']?.[0]?.source_url
+  if (emb) return emb
+  return null
 }
 
 export async function fetchPostBySlug(slug: string) {
