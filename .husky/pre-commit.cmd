@@ -1,11 +1,16 @@
 @echo off
-echo 🔍 Running lint-staged before commit...
-npx lint-staged
+chcp 65001 >nul
 
-if %errorlevel% neq 0 (
+echo 🔍 Running lint-staged before commit...
+
+:: Executa lint-staged e captura o código de saída
+call npx lint-staged
+set result=%errorlevel%
+
+if %result% neq 0 (
   echo ❌ Lint-staged found issues. Commit aborted.
-  exit /b 1
+  exit /b %result%
 )
 
-echo ✅ Lint-staged passed!
+echo ✅ Lint-staged passed successfully!
 exit /b 0
