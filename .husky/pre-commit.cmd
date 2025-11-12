@@ -1,15 +1,16 @@
 @echo off
 chcp 65001 >nul
 
-echo 🔍 Running lint-staged before commit...
+echo 🚀 Husky hook iniciado...
 
+echo 🔍 Executando lint-staged...
 call npx lint-staged
 set result=%errorlevel%
 
 if %result% neq 0 (
-  echo ❌ Lint-staged found issues. Commit aborted.
+  echo ❌ Erros encontrados pelo lint-staged. Commit cancelado.
   exit /b %result%
 )
 
-echo ✅ Lint-staged passed successfully!
+echo ✅ Lint-staged finalizado com sucesso!
 exit /b 0
