@@ -3,7 +3,6 @@ chcp 65001 >nul
 
 echo 🔍 Running lint-staged before commit...
 
-:: Executa lint-staged e captura o código de saída
 call npx lint-staged
 set result=%errorlevel%
 
