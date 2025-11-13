@@ -11,9 +11,11 @@ export default function Sidebar() {
       <div className="avatar">
         <img src={profileImage} alt="Foto de perfil" />
       </div>
-      <h1 className="brand">
-        <img src={brandImage} alt="Rafael Gomes" />
-      </h1>
+      <NavLink to="/" end>
+        <h1 className="brand">
+          <img src={brandImage} alt="Rafael Gomes" />
+        </h1>
+      </NavLink>
       <span className="role">Front-end Developer</span>
       <div className="social">
         <a

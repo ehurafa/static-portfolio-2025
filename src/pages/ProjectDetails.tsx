@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TiChevronLeft } from 'react-icons/ti';
 import { fetchPostBySlug, WPPost, TechnologyTag } from '../api/wp';
+import Spinner from '../components/Spinner';
 
 export default function ProjectDetails() {
   const { slug } = useParams();
@@ -26,7 +27,7 @@ export default function ProjectDetails() {
     void loadPost();
   }, [slug]);
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) return <Spinner />;
   if (!post) return <p>Post não encontrado.</p>;
 
   return (

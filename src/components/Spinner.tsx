@@ -1,3 +1,7 @@
-export default function Spinner(){
-  return <div className="spinner">Carregando…</div>
+export default function Spinner() {
+  return (
+    <div className="wrapper">
+      <div className="spinner"></div>
+    </div>
+  );
 }
