@@ -25,11 +25,19 @@ img{display:block;max-width:100%;height:auto}
 .sidebar{
   background:var(--bg);
   color:var(--text);
-  padding:24px;
+  padding: 40px;
   position:sticky;
   top:0;
   align-self:start;
   min-height:100vh;
+  max-width: 280px;
+}
+
+@media (max-width: 960px){
+ .sidebar{
+    max-width: 100%;
+    position: relative;
+  }
 }
 
 @media (max-width: 960px){
@@ -38,24 +46,49 @@ img{display:block;max-width:100%;height:auto}
   }
 }
 .sidebar .avatar{
-  width:120px;
-  height:120px;
+  width: 100%;
+  height: auto;
   border-radius:50%;
   border:2px solid #fff;
   overflow:hidden;
   margin:0 auto 12px auto;
 }
-.sidebar h1{
-  margin:8px 0 0;
-  text-align:center;font-size:28px;font-weight:300;color:#a7fffb;
+
+@media (max-width: 960px){
+ .sidebar .avatar {
+    max-width: 150px;
+  }
 }
+
+.sidebar .brand{
+  margin: 2.5rem 0 0 0;
+  text-align:center;
+}
+
+@media (max-width: 960px){
+ .sidebar .brand img{
+  display: inline-block;
+  }
+}
+
 .sidebar h1 strong{color:var(--brand);font-weight:800}
-.sidebar .role{display:block;text-align:center;color:#c8c8c8;font-size:12px;margin-top:4px}
+.sidebar .role{display:block; color:#fff;font-size:12px;margin-top:4px; font-style: italic;}
+@media (max-width: 960px){
+ .sidebar .role {
+    text-align: center;
+  }
+}
 .sidebar .social{
   display: flex;
-  justify-content: center;
-  gap:12px;
+  gap:15px;
   margin:16px 0 24px 0;
+}
+
+@media (max-width: 960px){
+ .sidebar .social{
+    justify-content: center;
+    margin-bottom: 0;
+  }
 }
 
 .sidebar .social span{
