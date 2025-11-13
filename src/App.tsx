@@ -1,11 +1,11 @@
-import { NavLink, Route, Routes } from "react-router-dom"
-import Home from "./pages/Home"
-import Certificates from "./pages/Certificates"
-import Contact from "./pages/Contact"
-import ProjectDetails from "./pages/ProjectDetails"
-import Sidebar from "./components/Sidebar"
+import { Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import Certificates from './pages/Certificates';
+import Contact from './pages/Contact';
+import ProjectDetails from './pages/ProjectDetails';
+import Sidebar from './components/Sidebar';
 
-export default function App(){
+export default function App() {
   return (
     <div className="layout">
       <aside className="sidebar">
@@ -20,5 +20,5 @@ export default function App(){
         </Routes>
       </main>
     </div>
-  )
+  );
 }
