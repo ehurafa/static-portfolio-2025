@@ -38,12 +38,12 @@ export default function ProjectDetails() {
       />
       <h1>{post.acf?.title_post}</h1>
       <div dangerouslySetInnerHTML={{ __html: post.acf?.post_content || '' }} />
-      <ul>
+      <ul className="tags">
         {post.acf?.list_of_technologies?.map((tag: TechnologyTag, i: number) => (
-          <li key={tag.term_id}>#{tag.name || ''}</li>
+          <li key={tag.term_id}>{tag.name || ''}</li>
         ))}
       </ul>
-      <button onClick={() => navigate('/')}>
+      <button onClick={() => navigate('/')} className="btn">
         <TiChevronLeft /> Voltar
       </button>
     </div>

@@ -40,7 +40,6 @@ export async function fetchPosts(): Promise<WPPost[]> {
 // Try to resolve an image URL from multiple possible shapes
 export function getPostImage(p: WPPost): string | null {
   const acfThumb: string | undefined = p.acf?.image_post?.url;
-  console.log('WPPost', p);
   if (typeof acfThumb === 'string' && acfThumb.length > 0) {
     return acfThumb;
   }
@@ -56,7 +55,6 @@ export async function fetchPostBySlug(slug: string): Promise<WPPost> {
   );
   if (!res.ok) throw new Error(`Erro HTTP: ${res.status}`);
   const data = (await res.json()) as WPPost[];
-  console.log('data by slug:', data);
   return data[0];
 }
 
