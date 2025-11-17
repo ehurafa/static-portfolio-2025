@@ -7,7 +7,7 @@ export default function Home() {
   const [posts, setPosts] = useState<WPPost[] | null>(null);
 
   useEffect(() => {
-    fetchPosts({}, true)
+    fetchPosts()
       .then(setPosts)
       .catch(() => setPosts([]));
   }, []);

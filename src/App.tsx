@@ -15,7 +15,6 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/certificados" element={<Certificates />} />
-          <Route path="/contato" element={<Contact />} />
           <Route path="/projeto/:slug" element={<ProjectDetails />} />
         </Routes>
       </main>

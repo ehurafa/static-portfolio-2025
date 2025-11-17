@@ -49,7 +49,6 @@ export default function Sidebar() {
           Inicial
         </NavLink>
         <NavLink to="/certificados">Certificados</NavLink>
-        <NavLink to="/contato">Contato</NavLink>
       </nav>
     </div>
   );

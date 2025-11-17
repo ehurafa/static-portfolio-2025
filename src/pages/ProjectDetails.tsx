@@ -37,7 +37,7 @@ export default function ProjectDetails() {
         alt={post.acf?.title_post || 'Imagem do projeto'}
       />
       <h1>{post.acf?.title_post}</h1>
-      <div dangerouslySetInnerHTML={{ __html: post.acf?.post_content || '' }} />
+      <div dangerouslySetInnerHTML={{ __html: post.content?.rendered || '' }} />
       <ul className="tags">
         {post.acf?.list_of_technologies?.map((tag: TechnologyTag, i: number) => (
           <li key={tag.term_id}>{tag.name || ''}</li>
