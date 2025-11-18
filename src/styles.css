@@ -141,7 +141,26 @@ img{display:block;max-width:100%;height:auto}
     margin-bottom: 1rem;
     background: #fff;
 }
-.card .thumb{aspect-ratio: 16/9;background:#ddd;overflow:hidden}
+.card .thumb{
+  aspect-ratio: 16/9;
+  background:#ddd;
+  overflow:hidden;
+  position: relative;
+}
+
+.card .thumb .tag{
+  position: absolute;
+  padding: 3px 5px;
+  margin: 3px;
+  font-size: 0.5rem;
+  background: #ddd;
+  color: #111;
+}
+
+.card .thumb .tag.purple{
+  background: #6d28d2;
+  color: #fff;
+}
 .card .thumb img {
   width: 100%;
   max-width: 100%;
@@ -153,14 +172,20 @@ img{display:block;max-width:100%;height:auto}
 .card .body{ text-align: center; }
 .card .title{
     font-weight: 700;
-    font-size: 1.25rem;
-    margin: 1.875rem 0;
+    font-size: 1rem;
+    margin: 0.8rem 0;
+    padding: 0 1rem;
+}
+
+.card .description{
+    font-weight: 500;
+    font-size: 0.7rem;
     padding: 0 1rem;
 }
 
 @media (max-width: 1280px){
  .card .title{
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 }
 
