@@ -2,107 +2,116 @@ import Spinner from '../components/Spinner';
 
 export default function Certificates() {
   const mappedTags: Record<string, string> = {
-    Udemy: 'purple',
-    Alura: 'white'
+    udemy: 'purple',
+    alura: 'white',
+    coder: 'red',
+    'internet innovation': 'orange'
   };
 
   const certificates = [
     {
       id: 100,
       title: 'Angular 9',
+      description: 'Angular 9 - Essencial',
       pdf: '/certificates/angular-9.pdf',
       thumb: '/certificates/angular-9.jpg',
-      tags: []
+      tags: ['coder']
     },
     {
       id: 2222,
       title: 'Cypress',
       pdf: '/certificates/cypress.pdf',
       description: 'AUTOMATIZANDO TESTES E2E',
-      school: 'Alura',
       thumb: '/certificates/cypress.jpg',
-      tags: []
+      tags: ['alura']
     },
     {
       id: 3,
       title: 'Cypress',
       description: 'AUTOMATIZAÇÃO DE TESTES WEB E CI',
-      school: 'Alura',
       pdf: '/certificates/cypress-2.pdf',
       thumb: '/certificates/cypress-2.jpg',
-      tags: []
+      tags: ['alura']
     },
     {
       id: 3333,
       title: 'HTTP',
+      description: 'Entendendo a Web por baixo dos panos',
       pdf: '/certificates/http.jpg',
       thumb: '/certificates/http.jpg',
-      tags: []
+      tags: ['alura']
     },
     {
       id: 33,
       title: 'Javascript',
-      pdf: '/certificates/js.pdf',
+      description: 'Programando na linguagem da web',
+      pdf: '/certificates/js.jpg',
       thumb: '/certificates/javascript.jpg',
-      tags: []
+      tags: ['alura']
     },
     {
       id: 34,
       title: 'Javascript',
+      description: 'JS com TDD na prática',
       pdf: '/certificates/js-2.pdf',
       thumb: '/certificates/javascript.jpg',
-      tags: []
+      tags: ['udemy']
     },
     {
       id: 35,
       title: 'Javascript',
+      description: 'Conhecendo o Browser e Padrões de Projeto',
       pdf: '/certificates/js-3.pdf',
       thumb: '/certificates/javascript.jpg',
-      tags: []
+      tags: ['alura']
     },
     {
       id: 36,
       title: 'Javascript',
-      pdf: '/certificates/js-4.pdf',
+      description: 'ES6, Orientação a Objetos e Patterns',
+      pdf: '/certificates/js-4.jpg',
       thumb: '/certificates/javascript.jpg',
-      tags: []
+      tags: ['alura']
     },
     {
       id: 37,
       title: 'Javascript',
+      description: 'Javascript Ninja',
       pdf: '/certificates/js-5.pdf',
       thumb: '/certificates/javascript.jpg',
-      tags: []
+      tags: ['udemy']
     },
     {
       id: 38,
       title: 'Javascript',
-      pdf: '/certificates/js-6.pdf',
+      pdf: '/certificates/js-6.jpg',
+      description: 'Lógica de Programação I: Comece na carreira JS',
       thumb: '/certificates/javascript.jpg',
-      tags: []
+      tags: ['alura']
     },
     {
       id: 388,
       title: 'Micro-frontend',
+      description: 'Treinamento prático de MicroFrontend com SingleSPA',
       pdf: '/certificates/mfe.pdf',
       thumb: '/certificates/mfe.jpg',
-      tags: []
+      tags: ['udemy']
     },
     {
       id: 1,
       title: 'Next',
       description: 'TOUR PELO NEXT.JS',
-      school: 'Alura',
       pdf: '/certificates/next.pdf',
       thumb: '/certificates/next.jpg',
-      tags: []
+      tags: ['alura']
     },
     {
       id: 44,
       title: 'React',
+      description: 'Eleve o nível da sua documentação no Storybook',
       pdf: '/certificates/react.pdf',
       thumb: '/certificates/react.jpg',
-      tags: []
+      tags: ['alura']
     },
     {
       id: 2,
@@ -111,79 +120,78 @@ export default function Certificates() {
       school: 'Udemy',
       pdf: '/certificates/react-2.pdf',
       thumb: '/certificates/react-2.jpg',
-      tags: ['Udemy']
-    },
-    {
-      id: 46,
-      title: 'React',
-      pdf: '/certificates/react-3.pdf',
-      thumb: '/certificates/react-2.jpg',
-      tags: []
+      tags: ['udemy']
     },
     {
       id: 47,
       title: 'Regex',
+      description: 'Fundamentos de Expressões Regulares',
       pdf: '/certificates/regex.pdf',
       thumb: '/certificates/regex.jpg',
-      tags: []
+      tags: ['udemy']
     },
     {
       id: 400,
       title: 'Sass',
+      description: 'Sass e Compass: Descomplicando o CSS',
       pdf: '/certificates/sass.pdf',
       thumb: '/certificates/sass.jpg',
-      tags: []
+      tags: ['alura']
     },
     {
       id: 401,
-      title: 'Sass',
+      title: 'S.E.O',
       pdf: '/certificates/seo.pdf',
       thumb: '/certificates/seo.jpg',
-      tags: []
+      tags: ['internet innovation']
     },
     {
       id: 402,
       title: 'Typescript',
+      description: 'Dominando o Typescript',
       pdf: '/certificates/ts.pdf',
       thumb: '/certificates/typescript.jpg',
-      tags: []
+      tags: ['udemy']
     },
     {
       id: 403,
       title: 'Typescript',
+      description: 'Typescript I: Evoluindo seu Javascript',
       pdf: '/certificates/ts-2.pdf',
       thumb: '/certificates/typescript.jpg',
-      tags: []
+      tags: ['alura']
     },
     {
       id: 404,
       title: 'Webpack',
       description: 'Trabalhando com módulos na sua webapp',
-      school: 'Alura',
       pdf: '/certificates/webpack.pdf',
       thumb: '/certificates/webpack.jpg',
-      tags: []
+      tags: ['alura']
     },
     {
-      id: 40,
+      id: 20,
       title: 'Vue 2',
+      description: 'O Guia Completo (incl. Vue Router & Vuex)',
       pdf: '/certificates/vue-2.pdf',
       thumb: '/certificates/vue-2.jpg',
-      tags: []
+      tags: ['udemy']
     },
     {
       id: 4,
       title: 'Vue 3',
+      description: 'Vue 3 Completo com Composition API, Vuex & Vue Router',
       pdf: '/certificates/vue-3.pdf',
       thumb: '/certificates/vue-3.jpg',
-      tags: []
+      tags: ['udemy']
     },
     {
       id: 5,
       title: 'Vue 3',
+      description: 'Entendendo Componentes, Diretivas e Reatividade no Framework',
       pdf: '/certificates/vue-3-2.pdf',
       thumb: '/certificates/vue-3-2.jpg',
-      tags: []
+      tags: ['alura']
     }
   ];
 

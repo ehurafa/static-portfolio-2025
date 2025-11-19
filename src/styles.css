@@ -157,10 +157,25 @@ img{display:block;max-width:100%;height:auto}
   color: #111;
 }
 
+.card .thumb .school{
+  text-transform: capitalize;
+}
+
 .card .thumb .tag.purple{
   background: #6d28d2;
   color: #fff;
 }
+
+.card .thumb .tag.red{
+  background: red;
+  color: #fff;
+}
+
+.card .thumb .tag.orange {
+  background: orange;
+  color: #000;
+}
+
 .card .thumb img {
   width: 100%;
   max-width: 100%;
@@ -173,7 +188,7 @@ img{display:block;max-width:100%;height:auto}
 .card .title{
     font-weight: 700;
     font-size: 1rem;
-    margin: 0.8rem 0;
+    margin: 1rem 0;
     padding: 0 1rem;
 }
 
