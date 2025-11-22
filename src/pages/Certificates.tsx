@@ -18,7 +18,7 @@ export default function Certificates() {
       tags: ['coder']
     },
     {
-      id: 2222,
+      id: 500,
       title: 'Cypress',
       pdf: '/certificates/cypress.pdf',
       description: 'AUTOMATIZANDO TESTES E2E',
@@ -26,7 +26,7 @@ export default function Certificates() {
       tags: ['alura']
     },
     {
-      id: 3,
+      id: 50,
       title: 'Cypress',
       description: 'AUTOMATIZAÇÃO DE TESTES WEB E CI',
       pdf: '/certificates/cypress-2.pdf',
@@ -191,6 +191,14 @@ export default function Certificates() {
       description: 'Entendendo Componentes, Diretivas e Reatividade no Framework',
       pdf: '/certificates/vue-3-2.pdf',
       thumb: '/certificates/vue-3-2.jpg',
+      tags: ['alura']
+    },
+    {
+      id: 500,
+      title: 'AngularJS',
+      description: 'Crie webapps poderosas',
+      pdf: '/certificates/angular-1.jpg',
+      thumb: '/certificates/angular-1.jpg',
       tags: ['alura']
     }
   ];
