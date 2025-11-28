@@ -48,6 +48,7 @@ export default function Sidebar() {
         <NavLink to="/" end>
           Inicial
         </NavLink>
+        <NavLink to="/sobre-mim">Sobre mim</NavLink>
         <NavLink to="/certificados">Certificados</NavLink>
       </nav>
     </div>

@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Certificates from './pages/Certificates';
-import Contact from './pages/Contact';
+import About from './pages/About';
 import ProjectDetails from './pages/ProjectDetails';
 import Sidebar from './components/Sidebar';
 
@@ -15,6 +15,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/certificados" element={<Certificates />} />
+          <Route path="/sobre-mim" element={<About />} />
           <Route path="/projeto/:slug" element={<ProjectDetails />} />
         </Routes>
       </main>

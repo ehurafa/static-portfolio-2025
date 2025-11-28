@@ -208,6 +208,14 @@ export default function Certificates() {
       pdf: '/certificates/angular-1.jpg',
       thumb: '/certificates/angular-1.jpg',
       tags: ['alura']
+    },
+    {
+      id: 502,
+      title: 'Azure Pipelines',
+      description: 'CI/CD, Docker e Kubernetes no Azure DevOps',
+      pdf: '/certificates/pipelines.pdf',
+      thumb: '/certificates/pipelines.png',
+      tags: ['udemy']
     }
   ];
 
