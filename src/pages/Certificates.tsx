@@ -10,6 +10,14 @@ export default function Certificates() {
 
   const certificates = [
     {
+      id: 0,
+      title: 'Next',
+      description: 'NextJS do zero ao avançado na pratica 2025',
+      pdf: '/certificates/next-2.pdf',
+      thumb: '/certificates/next-2.png',
+      tags: ['udemy']
+    },
+    {
       id: 100,
       title: 'Angular 9',
       description: 'Angular 9 - Essencial',
@@ -194,7 +202,7 @@ export default function Certificates() {
       tags: ['alura']
     },
     {
-      id: 500,
+      id: 501,
       title: 'AngularJS',
       description: 'Crie webapps poderosas',
       pdf: '/certificates/angular-1.jpg',
