@@ -8,7 +8,14 @@
 }
 *, *::before, *::after{box-sizing:border-box}
 html,body,#root{height:100%}
-body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;background:#f3f3f3;color:#111}
+body{
+  margin:0;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  background:#f3f3f3;
+  color:#111
+}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%;height:auto}
 
@@ -111,13 +118,53 @@ img{display:block;max-width:100%;height:auto}
 .nav a:hover{background:#2a2a2a;transform:translateX(2px)}
 .nav a.active{background:#2f2f2f}
 
+.title-wapper {
+  margin-bottom: 1rem;  
+}
+
 .title {
-  margin-bottom: 1rem;
+  align-items: center;
+  display: flex;
 }
 
 .title h1 {
   font-size: 1.5rem;
+  font-weight: 900;
+  font-style: normal;
+  float: left;
+  margin: 0;
+  padding: 0; 
 }
+
+@media (max-width: 960px){
+ .title h1 {   
+    margin: 0;
+    width: 100%;
+    display: flex;
+    font-size: 1.2rem;
+  }
+}
+
+.title h1 svg {
+  width: 35px;
+  height: 35px;
+  color: #000;
+  margin-top: 5px;
+}
+
+.title h1 span {
+  float: right;
+   margin: 8px 0 0 10px;
+   color: #333;
+}
+
+@media (max-width: 960px){
+  .title h1 span {
+    float: none;
+    margin-top: 5px;
+  }
+}
+
 
 .title p {
   font-size: 0.8rem;
@@ -314,4 +361,8 @@ img{display:block;max-width:100%;height:auto}
 .btn:hover {
   background: #00ffeb;
   color: #1f1f1f;
+}
+
+.about {
+  max-width: 1024px;
 }

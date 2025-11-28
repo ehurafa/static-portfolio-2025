@@ -1,3 +1,4 @@
+import { VscMortarBoard } from 'react-icons/vsc';
 import Spinner from '../components/Spinner';
 
 export default function Certificates() {
@@ -221,8 +222,13 @@ export default function Certificates() {
 
   return (
     <>
-      <div className="title">
-        <h1>Certificados</h1>
+      <div className="title-warpper">
+        <div className="title">
+          <h1>
+            {' '}
+            <VscMortarBoard /> <span>Certificados</span>
+          </h1>
+        </div>
         <p>Os meus certificados mais relevantes</p>
       </div>
 

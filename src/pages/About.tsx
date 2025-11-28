@@ -1,10 +1,15 @@
-import Spinner from '../components/Spinner';
+import { VscPreview } from 'react-icons/vsc';
 
 export default function About() {
   return (
     <>
-      <div className="title">
-        <h1>Minha História no Front-End</h1>
+      <div className="title-warpper">
+        <div className="title">
+          <h1>
+            {' '}
+            <VscPreview /> <span>Minha História no Front-End</span>
+          </h1>
+        </div>
       </div>
 
       <div className="about">
