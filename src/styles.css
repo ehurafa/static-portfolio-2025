@@ -111,10 +111,22 @@ img{display:block;max-width:100%;height:auto}
 .nav a:hover{background:#2a2a2a;transform:translateX(2px)}
 .nav a.active{background:#2f2f2f}
 
+.title {
+  margin-bottom: 1rem;
+}
+
+.title h1 {
+  font-size: 1.5rem;
+}
+
+.title p {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
 .content{
-  padding:24px;
-  flex-grow: 1; /* Faz com que o elemento cresça e preencha todo o espaço restante */
-    min-width: 0;
+  padding: 40px;
+  flex-grow: 1;
+  min-width: 0;
 }
 
 .grid{

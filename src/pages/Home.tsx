@@ -21,6 +21,10 @@ export default function Home() {
 
   return (
     <div>
+      <div className="title">
+        <h1>Projetos</h1>
+        <p>Alguns projetos (públicos) desenvolvidos durante a minha carreira</p>
+      </div>
       {!posts ? (
         <Spinner />
       ) : (

@@ -2,8 +2,10 @@ import Spinner from '../components/Spinner';
 
 export default function About() {
   return (
-    <div className="content">
-      <h2>Minha História no Front-End</h2>
+    <>
+      <div className="title">
+        <h1>Minha História no Front-End</h1>
+      </div>
 
       <div className="about">
         <p>
@@ -41,6 +43,6 @@ export default function About() {
           mais rápidas, seguras, modulares e com uma base bem estruturada em JavaScript.
         </p>
       </div>
-    </div>
+    </>
   );
 }

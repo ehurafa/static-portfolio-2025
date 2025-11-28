@@ -220,8 +220,11 @@ export default function Certificates() {
   ];
 
   return (
-    <div className="content">
-      <h2>Certificados</h2>
+    <>
+      <div className="title">
+        <h1>Certificados</h1>
+        <p>Os meus certificados mais relevantes</p>
+      </div>
 
       {!certificates ? (
         <Spinner />
@@ -256,6 +259,6 @@ export default function Certificates() {
             ))}
         </div>
       )}
-    </div>
+    </>
   );
 }
