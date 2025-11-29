@@ -1,12 +1,12 @@
-import tseslint from 'typescript-eslint';
-import eslint from '@eslint/js';
-import globals from 'globals';
-import eslintConfigPrettier from 'eslint-config-prettier/flat';
-import react from 'eslint-plugin-react';
-import reactHooks from 'eslint-plugin-react-hooks';
-import a11yPlugin from 'eslint-plugin-jsx-a11y';
-import eslintPluginImport from 'eslint-plugin-import';
-import prettierPlugin from 'eslint-plugin-prettier';
+import tseslint from 'typescript-eslint'
+import eslint from '@eslint/js'
+import globals from 'globals'
+import eslintConfigPrettier from 'eslint-config-prettier/flat'
+import react from 'eslint-plugin-react'
+import reactHooks from 'eslint-plugin-react-hooks'
+import a11yPlugin from 'eslint-plugin-jsx-a11y'
+import eslintPluginImport from 'eslint-plugin-import'
+import prettierPlugin from 'eslint-plugin-prettier'
 
 export default [
   eslint.configs.recommended,
@@ -29,7 +29,8 @@ export default [
     },
     rules: {
       'comma-dangle': ['error', 'never'],
-      'prettier/prettier': ['error', { trailingComma: 'none' }]
+      semi: ['error', 'never'],
+      'prettier/prettier': ['error', { trailingComma: 'none', semi: false }]
     }
   },
 
@@ -73,6 +74,7 @@ export default [
       'react-hooks/exhaustive-deps': 'warn',
       'jsx-a11y/alt-text': 'warn',
 
+      semi: ['error', 'never'],
       'import/order': [
         'warn',
         { groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'] }
@@ -98,4 +100,4 @@ export default [
   },
 
   eslintConfigPrettier
-];
+]
