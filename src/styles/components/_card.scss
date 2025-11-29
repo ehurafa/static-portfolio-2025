@@ -82,9 +82,11 @@
 
   .description {
     font-weight: $font-weight-medium;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     padding: 0 $space-4;
-    margin-bottom: $space-4;
+    margin-bottom: $space-3;
+    color: $color-gray-500;
+    text-align: left;
   }
 }
 
