@@ -254,7 +254,13 @@ export default function Certificates() {
                         {cert.tags[0]}
                       </span>
                     ))}
-                  <img src={cert.thumb} alt={cert.title} />
+                  <img 
+                    src={cert.thumb} 
+                    alt={cert.title}
+                    onError={(e) => {
+                      e.currentTarget.src = '/certificates/placeholder.svg';
+                    }}
+                  />
                 </div>
 
                 <div className="body">
