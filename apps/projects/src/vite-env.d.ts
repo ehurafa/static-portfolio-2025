@@ -2,11 +2,11 @@
 
 // Allow importing .jsx and .js files in TypeScript
 declare module '*.jsx' {
-  const content: React.ComponentType<any>;
-  export default content;
+  const content: React.ComponentType<unknown>
+  export default content
 }
 
 declare module '*.js' {
-  const content: any;
-  export default content;
+  const content: unknown
+  export default content
 }
