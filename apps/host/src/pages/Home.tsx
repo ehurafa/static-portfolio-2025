@@ -1,15 +1,24 @@
 import { useEffect, useState } from 'react'
 import Spinner from '../components/Spinner'
+import { fetchGithubLanguages } from '../api/github'
+
+interface GithubLanguage {
+  name: string
+  percentage: number
+  color: string
+}
 
 export default function Home() {
   const [loading, setLoading] = useState(true)
+  const [languages, setLanguages] = useState<GithubLanguage[]>([])
 
   useEffect(() => {
-    // Simulate initial load
-    const timer = setTimeout(() => {
+    const loadData = async () => {
+      const langs = await fetchGithubLanguages()
+      setLanguages(langs)
       setLoading(false)
-    }, 500)
-    return () => clearTimeout(timer)
+    }
+    loadData()
   }, [])
 
   if (loading) {
@@ -28,31 +37,32 @@ export default function Home() {
 
       <div className="home-cards-grid">
         <div className="home-card">
-          <h2 className="card-title">Habilidades</h2>
+          <h2 className="card-title">Linguagens Mais Usadas</h2>
           <div className="card-content">
-            <div className="skill-item">
-              <span className="skill-name">React</span>
-              <div className="skill-bar">
-                <div className="skill-progress" style={{ width: '90%' }}></div>
-              </div>
+            {/* Barra de cores empilhada */}
+            <div className="languages-bar">
+              {languages.map(lang => (
+                <div
+                  key={lang.name}
+                  className="language-segment"
+                  style={{
+                    width: `${lang.percentage}%`,
+                    backgroundColor: lang.color
+                  }}
+                  title={`${lang.name}: ${lang.percentage.toFixed(2)}%`}
+                ></div>
+              ))}
             </div>
-            <div className="skill-item">
-              <span className="skill-name">Vue.js</span>
-              <div className="skill-bar">
-                <div className="skill-progress" style={{ width: '85%' }}></div>
-              </div>
-            </div>
-            <div className="skill-item">
-              <span className="skill-name">Tailwind CSS</span>
-              <div className="skill-bar">
-                <div className="skill-progress" style={{ width: '80%' }}></div>
-              </div>
-            </div>
-            <div className="skill-item">
-              <span className="skill-name">Python</span>
-              <div className="skill-bar">
-                <div className="skill-progress" style={{ width: '75%' }}></div>
-              </div>
+
+            {/* Lista de linguagens em 2 colunas */}
+            <div className="languages-grid">
+              {languages.map(lang => (
+                <div key={lang.name} className="language-item">
+                  <span className="language-dot" style={{ backgroundColor: lang.color }}></span>
+                  <span className="language-name">{lang.name}</span>
+                  <span className="language-percent">{lang.percentage.toFixed(2)}%</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
