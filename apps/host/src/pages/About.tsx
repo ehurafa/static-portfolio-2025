@@ -1,6 +1,21 @@
-import { VscPreview } from 'react-icons/vsc';
+import { useEffect, useState } from 'react'
+import { VscPreview } from 'react-icons/vsc'
+import Spinner from '../components/Spinner'
 
 export default function About() {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (loading) {
+    return <Spinner />
+  }
+
   return (
     <>
       <div className="title-warpper">
@@ -49,5 +64,5 @@ export default function About() {
         </p>
       </div>
     </>
-  );
+  )
 }

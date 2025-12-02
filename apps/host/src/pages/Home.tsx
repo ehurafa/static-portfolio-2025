@@ -1,4 +1,21 @@
+import { useEffect, useState } from 'react'
+import Spinner from '../components/Spinner'
+
 export default function Home() {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    // Simulate initial load
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (loading) {
+    return <Spinner />
+  }
+
   return (
     <div className="home-page">
       <section className="intro-section">

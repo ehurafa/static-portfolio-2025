@@ -1,21 +1,34 @@
-import { useState } from 'react';
-import { FaGithub, FaTimes } from 'react-icons/fa';
-import { projects, type Project } from './projectsData';
+import { useState, useEffect } from 'react'
+import { FaGithub, FaTimes } from 'react-icons/fa'
+import Spinner from '../components/Spinner'
+import { projects, type Project } from './projectsData'
 
 export default function Laboratory() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [filter, setFilter] = useState<string>('all');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [filter, setFilter] = useState<string>('all')
+  const [loading, setLoading] = useState(true)
 
-  const categories = ['all', ...new Set(projects.map((p) => p.category))];
-  const filteredProjects = filter === 'all' ? projects : projects.filter((p) => p.category === filter);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  const categories = ['all', ...new Set(projects.map(p => p.category))]
+  const filteredProjects = filter === 'all' ? projects : projects.filter(p => p.category === filter)
+
+  if (loading) {
+    return <Spinner />
+  }
 
   return (
     <div className="laboratory">
       <header className="laboratory-header">
         <h1>Laboratório</h1>
         <p>
-          Explore meus projetos desenvolvidos durante cursos e estudos. Cada projeto é uma aplicação funcional que
-          você pode interagir.
+          Explore meus projetos desenvolvidos durante cursos e estudos. Cada projeto é uma aplicação
+          funcional que você pode interagir.
         </p>
       </header>
 
@@ -23,7 +36,7 @@ export default function Laboratory() {
         <>
           {/* Filter buttons */}
           <div className="category-filter">
-            {categories.map((category) => (
+            {categories.map(category => (
               <button
                 key={category}
                 className={`filter-btn ${filter === category ? 'active' : ''}`}
@@ -36,8 +49,12 @@ export default function Laboratory() {
 
           {/* Projects Grid */}
           <div className="projects-grid">
-            {filteredProjects.map((project) => (
-              <article key={project.id} className="project-card" onClick={() => setSelectedProject(project)}>
+            {filteredProjects.map(project => (
+              <article
+                key={project.id}
+                className="project-card"
+                onClick={() => setSelectedProject(project)}
+              >
                 <div className="project-screenshot">
                   <img src={project.screenshot} alt={project.name} loading="lazy" />
                   <div className="project-overlay">
@@ -48,7 +65,7 @@ export default function Laboratory() {
                   <h3>{project.name}</h3>
                   <p>{project.description}</p>
                   <div className="tech-tags">
-                    {project.technologies.map((tech) => (
+                    {project.technologies.map(tech => (
                       <span key={tech} className="tech-tag">
                         {tech}
                       </span>
@@ -71,14 +88,18 @@ export default function Laboratory() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="github-link"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={e => e.stopPropagation()}
                 >
                   <FaGithub />
                   <span>Ver Código</span>
                 </a>
               )}
             </div>
-            <button className="close-btn" onClick={() => setSelectedProject(null)} aria-label="Fechar">
+            <button
+              className="close-btn"
+              onClick={() => setSelectedProject(null)}
+              aria-label="Fechar"
+            >
               <FaTimes />
             </button>
           </div>
@@ -94,5 +115,5 @@ export default function Laboratory() {
         </div>
       )}
     </div>
-  );
+  )
 }
