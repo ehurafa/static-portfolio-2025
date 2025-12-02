@@ -1,9 +1,9 @@
-import { NavLink } from 'react-router-dom';
-import { TiSocialLinkedin } from 'react-icons/ti';
-import { BiLogoPinterestAlt } from 'react-icons/bi';
-import { FaGithubAlt } from 'react-icons/fa6';
-import profileImage from '../assets/profile.jpg';
-import brandImage from '../assets/brand.png';
+import { NavLink } from 'react-router-dom'
+import { TiSocialLinkedin } from 'react-icons/ti'
+import { BiLogoPinterestAlt } from 'react-icons/bi'
+import { FaGithubAlt } from 'react-icons/fa6'
+import profileImage from '../assets/profile.jpg'
+import brandImage from '../assets/brand.png'
 
 export default function Sidebar() {
   return (
@@ -48,10 +48,11 @@ export default function Sidebar() {
         <NavLink to="/" end>
           Inicial
         </NavLink>
+        <NavLink to="/projetos">Projetos</NavLink>
         <NavLink to="/sobre-mim">Sobre mim</NavLink>
         <NavLink to="/certificados">Certificados</NavLink>
         <NavLink to="/laboratorio">Laboratório</NavLink>
       </nav>
     </div>
-  );
+  )
 }
