@@ -77,42 +77,6 @@
   }
 }
 
-.home-card {
-  background: $color-bg-card;
-  border-radius: 8px;
-  padding: $space-6;
-  box-shadow: $shadow-md;
-  border: 1px solid $color-border-light;
-  @include transition(all, 0.3s);
-
-  &:hover {
-    box-shadow: $shadow-lg;
-    transform: translateY(-2px);
-  }
-
-  @include media-md {
-    padding: $space-5;
-  }
-}
-
-.card-title {
-  font-size: $font-size-xl;
-  font-weight: $font-weight-bold;
-  color: $color-text-primary;
-  margin-bottom: $space-5;
-  padding-bottom: $space-3;
-  border-bottom: 2px solid $color-brand;
-
-  @include media-md {
-    font-size: $font-size-lg;
-  }
-}
-
-.card-content {
-  font-size: $font-size-sm;
-  color: $color-text-secondary;
-}
-
 // Linguagens (GitHub Style)
 .languages-bar {
   display: flex;

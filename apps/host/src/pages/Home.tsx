@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Card from '../components/Card'
 import Spinner from '../components/Spinner'
 import { fetchGithubLanguages, fetchGithubContributions } from '../api/github'
 
@@ -50,86 +51,77 @@ export default function Home() {
       </section>
 
       <div className="home-cards-grid">
-        <div className="home-card">
-          <h2 className="card-title">Linguagens Mais Usadas</h2>
-          <div className="card-content">
-            {/* Barra de cores empilhada */}
-            <div className="languages-bar">
-              {languages.map(lang => (
-                <div
-                  key={lang.name}
-                  className="language-segment"
-                  style={{
-                    width: `${lang.percentage}%`,
-                    backgroundColor: lang.color
-                  }}
-                  title={`${lang.name}: ${lang.percentage.toFixed(2)}%`}
-                ></div>
-              ))}
-            </div>
-
-            {/* Lista de linguagens em 2 colunas */}
-            <div className="languages-grid">
-              {languages.map(lang => (
-                <div key={lang.name} className="language-item">
-                  <span className="language-dot" style={{ backgroundColor: lang.color }}></span>
-                  <span className="language-name">{lang.name}</span>
-                  <span className="language-percent">{lang.percentage.toFixed(2)}%</span>
-                </div>
-              ))}
-            </div>
+        <Card variant="info" title="Linguagens Mais Usadas">
+          {/* Barra de cores empilhada */}
+          <div className="languages-bar">
+            {languages.map(lang => (
+              <div
+                key={lang.name}
+                className="language-segment"
+                style={{
+                  width: `${lang.percentage}%`,
+                  backgroundColor: lang.color
+                }}
+                title={`${lang.name}: ${lang.percentage.toFixed(2)}%`}
+              ></div>
+            ))}
           </div>
-        </div>
 
-        <div className="home-card">
-          <h2 className="card-title">Experiência</h2>
-          <div className="card-content">
-            <div className="experience-item">
-              <h3 className="experience-role">UI Developer</h3>
-              <p className="experience-company">
-                UI Developer a uma startup tech folojpis de entr arionalizar com interesta
-                tamalhando em om oncentuai mento aumnino.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="home-card">
-          <h2 className="card-title">Contribuições GitHub</h2>
-          <div className="card-content">
-            <p className="contributions-count">{contributions.total} contribuições no último ano</p>
-            <div className="contributions-graph">
-              <div className="contribution-weeks">
-                {Array.from({ length: 52 }, (_, weekIndex) => {
-                  const weekContribs = contributions.contributions.slice(
-                    weekIndex * 7,
-                    (weekIndex + 1) * 7
-                  )
-                  return (
-                    <div key={weekIndex} className="contribution-week">
-                      {weekContribs.map((contrib, dayIndex) => (
-                        <div
-                          key={`${weekIndex}-${dayIndex}`}
-                          className={`contribution-day level-${contrib.level}`}
-                          title={`${contrib.date}: ${contrib.count} contribuições`}
-                        ></div>
-                      ))}
-                    </div>
-                  )
-                })}
+          {/* Lista de linguagens em 2 colunas */}
+          <div className="languages-grid">
+            {languages.map(lang => (
+              <div key={lang.name} className="language-item">
+                <span className="language-dot" style={{ backgroundColor: lang.color }}></span>
+                <span className="language-name">{lang.name}</span>
+                <span className="language-percent">{lang.percentage.toFixed(2)}%</span>
               </div>
-            </div>
-            <div className="contribution-legend">
-              <span>Menos</span>
-              <div className="contribution-day level-0"></div>
-              <div className="contribution-day level-1"></div>
-              <div className="contribution-day level-2"></div>
-              <div className="contribution-day level-3"></div>
-              <div className="contribution-day level-4"></div>
-              <span>Mais</span>
+            ))}
+          </div>
+        </Card>
+
+        <Card variant="info" title="Experiência">
+          <div className="experience-item">
+            <h3 className="experience-role">UI Developer</h3>
+            <p className="experience-company">
+              UI Developer a uma startup tech folojpis de entr arionalizar com interesta tamalhando
+              em om oncentuai mento aumnino.
+            </p>
+          </div>
+        </Card>
+
+        <Card variant="info" title="Contribuições GitHub">
+          <p className="contributions-count">{contributions.total} contribuições no último ano</p>
+          <div className="contributions-graph">
+            <div className="contribution-weeks">
+              {Array.from({ length: 52 }, (_, weekIndex) => {
+                const weekContribs = contributions.contributions.slice(
+                  weekIndex * 7,
+                  (weekIndex + 1) * 7
+                )
+                return (
+                  <div key={weekIndex} className="contribution-week">
+                    {weekContribs.map((contrib, dayIndex) => (
+                      <div
+                        key={`${weekIndex}-${dayIndex}`}
+                        className={`contribution-day level-${contrib.level}`}
+                        title={`${contrib.date}: ${contrib.count} contribuições`}
+                      ></div>
+                    ))}
+                  </div>
+                )
+              })}
             </div>
           </div>
-        </div>
+          <div className="contribution-legend">
+            <span>Menos</span>
+            <div className="contribution-day level-0"></div>
+            <div className="contribution-day level-1"></div>
+            <div className="contribution-day level-2"></div>
+            <div className="contribution-day level-3"></div>
+            <div className="contribution-day level-4"></div>
+            <span>Mais</span>
+          </div>
+        </Card>
       </div>
     </div>
   )
