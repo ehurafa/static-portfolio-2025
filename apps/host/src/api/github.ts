@@ -18,14 +18,30 @@ const languageColors: Record<string, string> = {
   PHP: '#4F5D95',
   Python: '#3572A5',
   Java: '#b07219',
-  React: '#61dafb'
+  React: '#61dafb',
+  Go: '#00ADD8',
+  Rust: '#dea584',
+  Ruby: '#701516',
+  C: '#555555',
+  'C++': '#f34b7d',
+  Shell: '#89e051'
 }
 
+// Cache para evitar múltiplas requisições
+let languagesCache: GithubLanguage[] | null = null
+let languagesCacheTime: number | null = null
+const CACHE_DURATION = 5 * 60 * 1000 // 5 minutos
+
 export async function fetchGithubLanguages(): Promise<GithubLanguage[]> {
+  // Retornar do cache se ainda válido
+  if (languagesCache && languagesCacheTime && Date.now() - languagesCacheTime < CACHE_DURATION) {
+    return languagesCache
+  }
+
   try {
-    // Buscar todos os repos do usuário
+    // Buscar apenas os repos principais (mais recentes e não-forks)
     const reposResponse = await fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`
+      `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=15&sort=updated&type=owner`
     )
 
     if (!reposResponse.ok) {
@@ -33,28 +49,35 @@ export async function fetchGithubLanguages(): Promise<GithubLanguage[]> {
     }
 
     const repos = await reposResponse.json()
-
-    // Agregar linguagens de todos os repos
     const languageTotals: Record<string, number> = {}
     let totalBytes = 0
 
-    // Buscar linguagens de cada repo
-    for (const repo of repos) {
-      if (!repo.fork) {
-        // Ignorar forks
-        const langResponse = await fetch(repo.languages_url)
-        if (langResponse.ok) {
-          const languages = await langResponse.json()
+    // Buscar apenas repos não-fork (máximo 10)
+    const nonForkRepos = repos.filter((repo: { fork: boolean }) => !repo.fork).slice(0, 10)
 
-          for (const [lang, bytes] of Object.entries(languages)) {
-            languageTotals[lang] = (languageTotals[lang] || 0) + (bytes as number)
-            totalBytes += bytes as number
-          }
+    // Fetch em paralelo
+    const results = await Promise.all(
+      nonForkRepos.map(async (repo: { languages_url: string }) => {
+        try {
+          const res = await fetch(repo.languages_url)
+          return res.ok ? await res.json() : null
+        } catch {
+          return null
         }
-      }
-    }
+      })
+    )
 
-    // Calcular percentuais e ordenar
+    // Agregar
+    results.forEach(langs => {
+      if (langs) {
+        Object.entries(langs).forEach(([lang, bytes]) => {
+          languageTotals[lang] = (languageTotals[lang] || 0) + (bytes as number)
+          totalBytes += bytes as number
+        })
+      }
+    })
+
+    // Calcular percentuais
     const languagesArray: GithubLanguage[] = Object.entries(languageTotals)
       .map(([name, bytes]) => ({
         name,
@@ -62,10 +85,14 @@ export async function fetchGithubLanguages(): Promise<GithubLanguage[]> {
         color: languageColors[name] || '#858585'
       }))
       .sort((a, b) => b.percentage - a.percentage)
-      .slice(0, 6) // Top 6 linguagens
+      .slice(0, 6)
+
+    // Cache
+    languagesCache = languagesArray
+    languagesCacheTime = Date.now()
 
     return languagesArray
-  } catch (error) {
+  } catch {
     // Silent fallback - API can fail due to CORS or rate limits
     if (import.meta.env.DEV) {
       console.info('Using fallback data for GitHub languages')
@@ -87,10 +114,23 @@ interface GithubContribution {
   level: 0 | 1 | 2 | 3 | 4 // GitHub uses 0-4 levels
 }
 
+// Cache para contribuições
+let contributionsCache: { total: number; contributions: GithubContribution[] } | null = null
+let contributionsCacheTime: number | null = null
+
 export async function fetchGithubContributions(): Promise<{
   total: number
   contributions: GithubContribution[]
 }> {
+  // Retornar do cache se ainda válido
+  if (
+    contributionsCache &&
+    contributionsCacheTime &&
+    Date.now() - contributionsCacheTime < CACHE_DURATION
+  ) {
+    return contributionsCache
+  }
+
   try {
     // Buscar eventos do usuário (últimos 90 dias)
     const eventsResponse = await fetch(
@@ -134,8 +174,14 @@ export async function fetchGithubContributions(): Promise<{
 
     const total = Object.values(contributionsByDate).reduce((sum, count) => sum + count, 0)
 
-    return { total, contributions }
-  } catch (error) {
+    const result = { total, contributions }
+
+    // Salvar no cache
+    contributionsCache = result
+    contributionsCacheTime = Date.now()
+
+    return result
+  } catch {
     // Silent fallback - API can fail due to CORS or rate limits
     if (import.meta.env.DEV) {
       console.info('Using simulated data for GitHub contributions')
