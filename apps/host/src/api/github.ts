@@ -66,8 +66,10 @@ export async function fetchGithubLanguages(): Promise<GithubLanguage[]> {
 
     return languagesArray
   } catch (error) {
-    console.error('Error fetching GitHub languages:', error)
-    // Fallback com dados estáticos baseados na imagem
+    // Silent fallback - API can fail due to CORS or rate limits
+    if (import.meta.env.DEV) {
+      console.info('Using fallback data for GitHub languages')
+    }
     return [
       { name: 'JavaScript', percentage: 31.06, color: '#f1e05a' },
       { name: 'CSS', percentage: 26.78, color: '#563d7c' },
@@ -134,7 +136,10 @@ export async function fetchGithubContributions(): Promise<{
 
     return { total, contributions }
   } catch (error) {
-    console.error('Error fetching GitHub contributions:', error)
+    // Silent fallback - API can fail due to CORS or rate limits
+    if (import.meta.env.DEV) {
+      console.info('Using simulated data for GitHub contributions')
+    }
 
     // Fallback com dados simulados realistas
     const contributions: GithubContribution[] = []
