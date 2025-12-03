@@ -17,8 +17,8 @@
 @use './base/reset';
 @use './base/global';
 
-// 4. Layouts
-@use './layouts/layout';
+// 4. Layouts (using shared styles from src/styles)
+@use '../../../src/styles/layouts/layout';
 
 // 5. Components
 @use './components/sidebar';
