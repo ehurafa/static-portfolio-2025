@@ -59,12 +59,21 @@
 // Cards Grid
 .home-cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: $space-6;
 
   @include media-lg {
     grid-template-columns: 1fr;
     gap: $space-4;
+  }
+
+  // Third card (contributions) spans full width
+  .home-card:nth-child(3) {
+    grid-column: span 2;
+
+    @include media-lg {
+      grid-column: span 1;
+    }
   }
 }
 
@@ -181,71 +190,74 @@
   line-height: $line-height-relaxed;
 }
 
-// Projetos Recentes
-.recent-projects {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: $space-4;
-
-  @include media-sm {
-    grid-template-columns: 1fr;
-  }
-}
-
-.project-thumb {
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  background: $color-gray-100;
-  aspect-ratio: 4/3;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    @include transition(transform, 0.3s);
-  }
-
-  &:hover img {
-    transform: scale(1.05);
-  }
-
-  &:hover .project-btn {
-    opacity: 1;
-  }
-}
-
-.project-label {
-  position: absolute;
-  bottom: $space-3;
-  left: $space-3;
-  right: $space-3;
-  font-size: $font-size-xs;
-  font-weight: $font-weight-semibold;
-  color: $color-white;
-  background: rgba(0, 0, 0, 0.7);
-  padding: $space-2 $space-3;
-  border-radius: 4px;
-  backdrop-filter: blur(4px);
-}
-
-.project-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: $space-2 $space-4;
+// Contribuições GitHub
+.contributions-count {
   font-size: $font-size-sm;
-  font-weight: $font-weight-semibold;
-  color: $color-dark;
-  background: $color-brand;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  opacity: 0;
-  @include transition(all, 0.3s);
+  color: $color-text-secondary;
+  margin-bottom: $space-4;
+  font-weight: $font-weight-medium;
+}
+
+.contributions-graph {
+  margin-bottom: $space-4;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.contribution-weeks {
+  display: flex;
+  gap: 3px;
+  min-width: fit-content;
+}
+
+.contribution-week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.contribution-day {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  @include transition(all, 0.2s);
 
   &:hover {
-    transform: translate(-50%, -50%) scale(1.05);
+    outline: 1px solid rgba(0, 255, 235, 0.5);
+    transform: scale(1.2);
+  }
+
+  // GitHub color levels
+  &.level-0 {
+    background: $color-gray-200;
+  }
+
+  &.level-1 {
+    background: #9be9a8;
+  }
+
+  &.level-2 {
+    background: #40c463;
+  }
+
+  &.level-3 {
+    background: #30a14e;
+  }
+
+  &.level-4 {
+    background: #216e39;
+  }
+}
+
+.contribution-legend {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $font-size-xs;
+  color: $color-text-muted;
+  justify-content: flex-end;
+
+  @include media-sm {
+    justify-content: center;
   }
 }

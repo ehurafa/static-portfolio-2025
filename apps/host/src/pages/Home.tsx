@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Spinner from '../components/Spinner'
-import { fetchGithubLanguages } from '../api/github'
+import { fetchGithubLanguages, fetchGithubContributions } from '../api/github'
 
 interface GithubLanguage {
   name: string
@@ -8,14 +8,28 @@ interface GithubLanguage {
   color: string
 }
 
+interface GithubContribution {
+  date: string
+  count: number
+  level: 0 | 1 | 2 | 3 | 4
+}
+
 export default function Home() {
   const [loading, setLoading] = useState(true)
   const [languages, setLanguages] = useState<GithubLanguage[]>([])
+  const [contributions, setContributions] = useState<{
+    total: number
+    contributions: GithubContribution[]
+  }>({ total: 0, contributions: [] })
 
   useEffect(() => {
     const loadData = async () => {
-      const langs = await fetchGithubLanguages()
+      const [langs, contribs] = await Promise.all([
+        fetchGithubLanguages(),
+        fetchGithubContributions()
+      ])
       setLanguages(langs)
+      setContributions(contribs)
       setLoading(false)
     }
     loadData()
@@ -81,19 +95,38 @@ export default function Home() {
         </div>
 
         <div className="home-card">
-          <h2 className="card-title">Projetos Recentes</h2>
+          <h2 className="card-title">Contribuições GitHub</h2>
           <div className="card-content">
-            <div className="recent-projects">
-              <div className="project-thumb">
-                <img src="/screenshots/todo-app.png" alt="E-commerce Redesign" />
-                <span className="project-label">E-commerce Redesign</span>
-                <button className="project-btn">Conhecendo</button>
+            <p className="contributions-count">{contributions.total} contribuições no último ano</p>
+            <div className="contributions-graph">
+              <div className="contribution-weeks">
+                {Array.from({ length: 52 }, (_, weekIndex) => {
+                  const weekContribs = contributions.contributions.slice(
+                    weekIndex * 7,
+                    (weekIndex + 1) * 7
+                  )
+                  return (
+                    <div key={weekIndex} className="contribution-week">
+                      {weekContribs.map((contrib, dayIndex) => (
+                        <div
+                          key={`${weekIndex}-${dayIndex}`}
+                          className={`contribution-day level-${contrib.level}`}
+                          title={`${contrib.date}: ${contrib.count} contribuições`}
+                        ></div>
+                      ))}
+                    </div>
+                  )
+                })}
               </div>
-              <div className="project-thumb">
-                <img src="/screenshots/weather-app.png" alt="App de Saúde" />
-                <span className="project-label">App de Saúde</span>
-                <button className="project-btn">Conhecendo</button>
-              </div>
+            </div>
+            <div className="contribution-legend">
+              <span>Menos</span>
+              <div className="contribution-day level-0"></div>
+              <div className="contribution-day level-1"></div>
+              <div className="contribution-day level-2"></div>
+              <div className="contribution-day level-3"></div>
+              <div className="contribution-day level-4"></div>
+              <span>Mais</span>
             </div>
           </div>
         </div>
