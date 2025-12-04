@@ -7,13 +7,13 @@
 @use '../tokens/typography' as *;
 @use '../tokens/breakpoints' as *;
 
-.title-wapper {
+.title-wrapper {
   margin-bottom: $space-4;
-}
 
-.title {
+  .title {
   align-items: center;
   display: flex;
+  
 
   h1 {
     font-size: $font-size-xl;
@@ -22,6 +22,7 @@
     float: left;
     margin: 0;
     padding: 0;
+
 
     @include media-lg {
       margin: 0;
@@ -41,7 +42,7 @@
     span {
       float: right;
       margin: 8px 0 0 0;
-      color: $color-text-secondary;
+      color: $color-text-light;
 
       @include media-lg {
         float: none;
@@ -54,5 +55,12 @@
     font-size: $font-size-sm;
     font-weight: $font-weight-light;
     color: $color-text-muted;
+  }
+  }
+
+  p {
+    font-style: italic;
+    font-size: $font-size-sm;
+    margin-top: 5px;
   }
 }

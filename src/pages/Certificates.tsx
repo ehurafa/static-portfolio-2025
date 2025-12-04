@@ -1,5 +1,5 @@
-import { VscMortarBoard } from 'react-icons/vsc';
-import Spinner from '../components/Spinner';
+import { VscMortarBoard } from 'react-icons/vsc'
+import Spinner from '../components/Spinner'
 
 export default function Certificates() {
   const mappedTags: Record<string, string> = {
@@ -7,7 +7,7 @@ export default function Certificates() {
     alura: 'white',
     coder: 'red',
     'internet innovation': 'orange'
-  };
+  }
 
   const certificates = [
     {
@@ -218,11 +218,11 @@ export default function Certificates() {
       thumb: '/certificates/pipelines.png',
       tags: ['udemy']
     }
-  ];
+  ]
 
   return (
     <>
-      <div className="title-warpper">
+      <div className="title-wrapper">
         <div className="title">
           <h1>
             {' '}
@@ -266,5 +266,5 @@ export default function Certificates() {
         </div>
       )}
     </>
-  );
+  )
 }

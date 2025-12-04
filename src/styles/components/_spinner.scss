@@ -12,7 +12,7 @@
   height: 10rem;
   margin: $space-4 $space-4 0;
   padding-top: 2.2rem;
-  background: rgba(255, 255, 255, 0.2);
+  // background: rgba(255, 255, 255, 0.2);
 
   &::after {
     position: absolute;
@@ -42,12 +42,12 @@
   }
 
   &::before {
-    background: $color-dark;
+    background: white;
     animation: pulse2 2s ease-in-out infinite;
   }
 
   &::after {
-    background: $color-dark;
+    background: white;
     animation: pulse2 2s 1s ease-in-out infinite;
   }
 }
