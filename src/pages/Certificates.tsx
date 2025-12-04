@@ -225,8 +225,12 @@ export default function Certificates() {
       <div className="title-wrapper">
         <div className="title">
           <h1>
-            {' '}
-            <VscMortarBoard /> <span>Certificados</span>
+            <VscMortarBoard />{' '}
+            <span>
+              Alguns
+              <br />
+              <span>Certificados</span>
+            </span>
           </h1>
         </div>
         <p>Os meus certificados mais relevantes</p>
