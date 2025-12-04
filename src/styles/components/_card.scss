@@ -73,11 +73,12 @@
   }
 
   .title {
-    font-weight: $font-weight-bold;
+    font-weight: $font-weight-semibold;
     font-size: $font-size-base;
     margin: $space-4 0;
-    padding: 0 $space-4;
+    padding: 0 $space-3;
     color: $color-gray-50;
+    font-family: 'Poppins', sans-serif;
 
     @include media-xl {
       font-size: $font-size-sm;
