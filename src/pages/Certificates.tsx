@@ -99,6 +99,14 @@ export default function Certificates() {
       tags: ['alura']
     },
     {
+      id: 39,
+      title: 'AEM',
+      description: 'Adobe Experience Manager 6.5 - Build Websites and Components',
+      pdf: '/certificates/aem.pdf',
+      thumb: '/certificates/aem.jpg',
+      tags: ['udemy']
+    },
+    {
       id: 388,
       title: 'Micro-frontend',
       description: 'Treinamento prático de MicroFrontend com SingleSPA',
